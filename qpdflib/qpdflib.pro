@@ -2,6 +2,7 @@ TEMPLATE = lib
 TARGET = qpdf
 
 CONFIG += dll
+CONFIG += c++11
 
 QT += widgets\
       webengine\

@@ -1,5 +1,7 @@
 TEMPLATE = app
 
+CONFIG += c++11
+
 QT += widgets
 
 HEADERS += mainwindow.h
@@ -12,11 +14,12 @@ RESOURCES += pdfviewer.qrc
 INCLUDEPATH += ../qpdflib
 
 CONFIG(debug, debug|release) {
-    LIBS += -L$$OUT_PWD/../qpdflib/debug
+    win32:LIBS += -L$$OUT_PWD/../qpdflib/debug
 } else {
-    LIBS += -L$$OUT_PWD/../qpdflib/release
+    win32:LIBS += -L$$OUT_PWD/../qpdflib/release
 }
-
 win32:LIBS += qpdf.lib
-unix:LIBS += qpdf.a
+
+unix:LIBS += -L$$OUT_PWD/../qpdflib
+unix:LIBS += -lqpdf
 
