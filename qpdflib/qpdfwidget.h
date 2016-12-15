@@ -22,7 +22,7 @@
 struct QPdfWidgetPrivate;
 
 /**
- * @brief PDF visualizationm widget.
+ * @brief PDF visualization widget.
  *
  * This class represents a widget used to visualize a pdf file.
  * It handles pdf file loading but also accepts raw data (byte array)
@@ -48,6 +48,28 @@ public:
      * @param data PDF data.
      */
     void loadData(const QByteArray &data);
+
+    /**
+     * @brief Set current page.
+     *
+     * This will make the viewer to navigate to a specific
+     * page of the document.
+     *
+     * This method does not change the view when trying to navigate
+     * outside of the document.
+     *
+     * @param page Page number.
+     */
+    void setPage(int page);
+
+    /**
+     * @brief Rotate all pages.
+     *
+     * Rotate current view by given angle.
+     *
+     * @param degrees Rotation delta, divisible by 90.
+     */
+    void rotatePages(int degrees);
 
 private slots:
 

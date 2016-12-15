@@ -69,6 +69,20 @@ void QPdfWidget::loadData(const QByteArray &data)
     renderPdf();
 }
 
+void QPdfWidget::setPage(int page)
+{
+    QString script = QString("PDFViewerApplication.page = %1")
+                        .arg(page);
+    m->pWebEngineView->invokeJavaScript(script);
+}
+
+void QPdfWidget::rotatePages(int degrees)
+{
+    QString script = QString("PDFViewerApplication.rotatePages(%1)")
+                        .arg(degrees);
+    m->pWebEngineView->invokeJavaScript(script);
+}
+
 void QPdfWidget::onLoadFinished(bool status)
 {
     if (!status) {
