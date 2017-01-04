@@ -86,6 +86,32 @@ public:
     void rotatePages(int degrees);
 
     /**
+     * @brief Zoom the view in.
+     *
+     * Single tick represent a zoom delta factor, which
+     * is set internally by the PDF rendering library.
+     *
+     * @param ticks Number of zooming ticks.
+     */
+    void zoomIn(int ticks = 1);
+
+    /**
+     * @brief Zoom the view out.
+     *
+     * Single tick represent a zoom delta factor, which
+     * is set internally by the PDF rendering library.
+     *
+     * @param ticks Number of zooming ticks.
+     */
+    void zoomOut(int ticks = 1);
+
+    /**
+     * @brief Reset zoom factor.
+     * @param scale Zoom scale to be set.
+     */
+    void zoomReset(qreal scale = 1.0);
+
+    /**
      * @brief Show PDF document properties pop-up window.
      */
     void showDocumentProperties();
@@ -97,7 +123,7 @@ public:
     void setFindBarVisible(bool v);
 
     /**
-     * @brief findNext Find text in the document.
+     * @brief Find text in the document.
      *
      * This method searches the text from the current view position
      * till the end of the document. Found text will be highlighted.
@@ -107,7 +133,7 @@ public:
     void findNext(const QString &text = QString());
 
     /**
-     * @brief findPrevious Find text in the document.
+     * @brief Find text in the document.
      *
      * This method searches the text from the current view position
      * up to the beginning of the document. Found text will be highlighted.

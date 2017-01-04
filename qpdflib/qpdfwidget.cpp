@@ -101,6 +101,24 @@ void QPdfWidget::rotatePages(int degrees)
     m->pWebEngineView->invokeJavaScript(script);
 }
 
+void QPdfWidget::zoomIn(int ticks)
+{
+    QString script = QString("PDFViewerApplication.zoomIn(%1)").arg(ticks);
+    m->pWebEngineView->invokeJavaScript(script);
+}
+
+void QPdfWidget::zoomOut(int ticks)
+{
+    QString script = QString("PDFViewerApplication.zoomOut(%1)").arg(ticks);
+    m->pWebEngineView->invokeJavaScript(script);
+}
+
+void QPdfWidget::zoomReset(qreal scale)
+{
+    QString script = QString("PDFViewerApplication.pdfViewer.currentScaleValue=%1").arg(scale);
+    m->pWebEngineView->invokeJavaScript(script);
+}
+
 void QPdfWidget::showDocumentProperties()
 {
     m->pWebEngineView->invokeJavaScript("PDFViewerApplication.pdfDocumentProperties.open()");
