@@ -25,8 +25,9 @@ public:
 
     WebEngineView(QWidget *pParent = nullptr);
 
-public slots:
     void invokeJavaScript(const QString &script);
+
+    QVariant invokeJavaScriptAndWaitForResult(const QString &script);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *pEvent);

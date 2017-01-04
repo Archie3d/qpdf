@@ -19,6 +19,8 @@
 #include <QWidget>
 #include "qpdf.h"
 
+class QWebEngineView;
+
 struct QPdfWidgetPrivate;
 
 /**
@@ -63,6 +65,18 @@ public:
     void setPage(int page);
 
     /**
+     * @brief Returns current page viewed.
+     * @return Current page.
+     */
+    int page() const;
+
+    /**
+     * @brief Returns total number of pages in the document.
+     * @return Total number of pages.
+     */
+    int pagesCount() const;
+
+    /**
      * @brief Rotate all pages.
      *
      * Rotate current view by given angle.
@@ -71,12 +85,67 @@ public:
      */
     void rotatePages(int degrees);
 
+    /**
+     * @brief Show PDF document properties pop-up window.
+     */
+    void showDocumentProperties();
+
+    /**
+     * @brief Set find bar visibility.
+     * @param v true to show the find bar, false to hide it.
+     */
+    void setFindBarVisible(bool v);
+
+    /**
+     * @brief findNext Find text in the document.
+     *
+     * This method searches the text from the current view position
+     * till the end of the document. Found text will be highlighted.
+     *
+     * @param text Text to find.
+     */
+    void findNext(const QString &text = QString());
+
+    /**
+     * @brief findPrevious Find text in the document.
+     *
+     * This method searches the text from the current view position
+     * up to the beginning of the document. Found text will be highlighted.
+     *
+     * @param text Text to find.
+     */
+    void findPrevious(const QString &text = QString());
+
+    /**
+     * @brief Returns the number of matches found.
+     *
+     * @note This function will return zero when called
+     * immediately after \ref findNext or \ref findPrevious.
+     * This is due to the ascynchronous nature of the find controller.
+     * One may introduce a small delay to make sure this function returns
+     * a valid result.
+     *
+     * @return Number of found results.
+     */
+    int findResultsCount() const;
+
+    /**
+     * @brief Returns pointer to underlying web view.
+     *
+     * @note Using this method exposes implementation details and is not recommended.
+     *
+     * @return Pointer to internal web view.
+     */
+    QWebEngineView* internalWebEngineView() const;
+
 private slots:
 
     void onLoadFinished(bool status);
     void renderPdf();
 
 private:
+
+    void setFindFieldText(const QString &text);
 
     /// Private members.
     QPdfWidgetPrivate *m;

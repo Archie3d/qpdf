@@ -13,7 +13,9 @@
     Lesser General Public License for more details.
 */
 
+#include <QApplication>
 #include <QContextMenuEvent>
+#include <QSemaphore>
 #include "webengineview.h"
 
 WebEngineView::WebEngineView(QWidget *pParent)
@@ -25,10 +27,28 @@ void WebEngineView::invokeJavaScript(const QString &script)
 {
     QWebEnginePage *pPage = page();
     if (pPage != nullptr) {
-        pPage->runJavaScript(script, [](const QVariant &res) {
-            Q_UNUSED(res);
-        });
+        pPage->runJavaScript(script);
     }
+}
+
+QVariant WebEngineView::invokeJavaScriptAndWaitForResult(const QString &script)
+{
+    QVariant result;
+    QWebEnginePage *pPage = page();
+    if (pPage != nullptr) {
+
+        QSemaphore waitSemaphore;
+        pPage->runJavaScript(script, [&result, &waitSemaphore](const QVariant &res) {
+            result = res;
+            waitSemaphore.release();
+        });
+
+        while (!waitSemaphore.tryAcquire()) {
+            qApp->processEvents();
+        }
+    }
+
+    return result;
 }
 
 void WebEngineView::contextMenuEvent(QContextMenuEvent *pEvent)
