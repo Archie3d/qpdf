@@ -17,6 +17,7 @@
 #define WEBENGINEVIEW_H
 
 #include <QWebEngineView>
+#include <QSemaphore>
 
 class WebEngineView : public QWebEngineView
 {
@@ -29,8 +30,28 @@ public:
 
     QVariant invokeJavaScriptAndWaitForResult(const QString &script);
 
+    QStringList fetchPdfDocumentDestinations();
+
+public slots:
+
+    void jsInitialized();
+    void jsReportDestinations(const QStringList &destinations);
+
 protected:
     void contextMenuEvent(QContextMenuEvent *pEvent);
+
+private slots:
+
+    void onLoadFinished(bool ok);
+
+private:
+
+    void establishWebChannel();
+
+    QWebChannel *m_pWebChannel;
+    QSemaphore m_pdfDestinationsSema;
+
+    QStringList m_pdfDocumentDestinations;
 
 };
 

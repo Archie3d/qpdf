@@ -7,7 +7,8 @@ CONFIG += c++11
 QT += widgets\
       webengine\
       webenginecore\
-      webenginewidgets
+      webenginewidgets\
+      webchannel
 
 DEFINES += QPDFLIB_BUILD
 

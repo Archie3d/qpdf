@@ -14,6 +14,7 @@
 */
 
 #include <QApplication>
+#include <QWebChannel>
 #include <QContextMenuEvent>
 #include <QSemaphore>
 #include "webengineview.h"
@@ -21,6 +22,9 @@
 WebEngineView::WebEngineView(QWidget *pParent)
     : QWebEngineView(pParent)
 {
+    m_pWebChannel = new QWebChannel(this);
+
+    connect(this, &QWebEngineView::loadFinished, this, &WebEngineView::onLoadFinished);
 }
 
 void WebEngineView::invokeJavaScript(const QString &script)
@@ -51,8 +55,50 @@ QVariant WebEngineView::invokeJavaScriptAndWaitForResult(const QString &script)
     return result;
 }
 
+QStringList WebEngineView::fetchPdfDocumentDestinations()
+{
+    m_pdfDocumentDestinations.clear();
+
+    invokeJavaScript("qpdf_FetchDestinations();");
+
+    while (!m_pdfDestinationsSema.tryAcquire()) {
+        qApp->processEvents();
+    }
+
+    return m_pdfDocumentDestinations;
+}
+
+void WebEngineView::jsInitialized()
+{
+    // Web view has been initialized
+}
+
+void WebEngineView::jsReportDestinations(const QStringList &destinations)
+{
+    m_pdfDocumentDestinations = destinations;
+    m_pdfDestinationsSema.release();
+}
+
 void WebEngineView::contextMenuEvent(QContextMenuEvent *pEvent)
 {
     // Disable context menu completely
     pEvent->ignore();
+}
+
+void WebEngineView::onLoadFinished(bool ok)
+{
+    if (ok) {
+        establishWebChannel();
+    }
+}
+
+void WebEngineView::establishWebChannel()
+{
+    QWebEnginePage *pPage = page();
+    if (pPage != nullptr) {
+        pPage->setWebChannel(m_pWebChannel);
+        m_pWebChannel->registerObject("qpdfview", this);
+
+        pPage->runJavaScript("qpdf_Initialize();");
+    }
 }

@@ -156,6 +156,21 @@ public:
     int findResultsCount() const;
 
     /**
+     * @brief Navigate to destination object.
+     * @param dest PDF destination object.
+     */
+    void navigateTo(const QString &dest);
+
+    /**
+     * @brief Returns a list of available destinations.
+     *
+     * Returned strings are anchors to be used with \ref navigateTo method.
+     *
+     * @return List if navigation links (destinations).
+     */
+    QStringList getDestinations() const;
+
+    /**
      * @brief Returns pointer to underlying web view.
      *
      * @note Using this method exposes implementation details and is not recommended.

@@ -8018,7 +8018,7 @@ function b64toBlob(b64Data, contentType, sliceSize) {
     return blob;
 }
 
-function showPdfFile(b64Data) {   
+function showPdfFile(b64Data) {
     var blob = b64toBlob(b64Data);
     var fileReader = new FileReader();
 
@@ -8029,4 +8029,23 @@ function showPdfFile(b64Data) {
     };
 
     fileReader.readAsArrayBuffer(blob);
+}
+
+// The following code is required to communicate back
+// to Qt environment via QWebChannel
+
+var qpdfview;
+
+function qpdf_Initialize() {
+    if (typeof qt != 'undefined') new QWebChannel(qt.webChannelTransport, function(channel) {
+        qpdfview = channel.objects.qpdfview;
+
+        qpdfview.jsInitialized();
+    });
+}
+
+function qpdf_FetchDestinations() {
+    PDFViewerApplication.pdfDocument.getDestinations().then(function(destinations) {
+        qpdfview.jsReportDestinations(Object.keys(destinations));
+    });
 }

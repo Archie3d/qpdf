@@ -36,7 +36,7 @@ QPdfWidget::QPdfWidget(QWidget *pParent)
 
     // Initialize pdf.js viewer
     QUrl url = QUrl::fromUserInput("qrc:/pdfview/viewer.html");
-    m->pWebEngineView->setUrl(url);
+    m->pWebEngineView->setUrl(url);    
 
     // widget layout
     QVBoxLayout *pLayout = new QVBoxLayout();
@@ -156,6 +156,20 @@ int QPdfWidget::findResultsCount() const
         return res.toInt();
     }
     return 0;
+}
+
+void QPdfWidget::navigateTo(const QString &dest)
+{
+    QString escapedDest = dest;
+    escapedDest.replace("\"", "\\\"");
+    QString script = QString("PDFViewerApplication.pdfLinkService.navigateTo(\"%1\")")
+            .arg(escapedDest);
+    m->pWebEngineView->invokeJavaScript(script);
+}
+
+QStringList QPdfWidget::getDestinations() const
+{
+    return m->pWebEngineView->fetchPdfDocumentDestinations();
 }
 
 QWebEngineView* QPdfWidget::internalWebEngineView() const
