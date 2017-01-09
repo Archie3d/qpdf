@@ -12,10 +12,12 @@ QT += widgets\
 
 DEFINES += QPDFLIB_BUILD
 
-HEADERS = webengineview.h\
-          qpdfwidget.h
+HEADERS =\
+    qpdfwidget.h \
+    pdfjsbridge.h
 
-SOURCES = webengineview.cpp\
-          qpdfwidget.cpp
+SOURCES =\
+    qpdfwidget.cpp \
+    pdfjsbridge.cpp
 
 RESOURCES += pdfview.qrc

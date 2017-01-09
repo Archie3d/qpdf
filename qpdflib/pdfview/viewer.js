@@ -7993,6 +7993,8 @@ window.addEventListener('afterprint', function afterPrint(evt) {
  * Binary data is base64-encoded and has to be decoded back here.
  */
 
+var qpdfBridge;
+
 function b64toBlob(b64Data, contentType, sliceSize) {
     contentType = contentType || '';
     sliceSize = sliceSize || 512;
@@ -8018,14 +8020,16 @@ function b64toBlob(b64Data, contentType, sliceSize) {
     return blob;
 }
 
-function showPdfFile(b64Data) {
+function qpdf_ShowPdfFile(b64Data) {
     var blob = b64toBlob(b64Data);
     var fileReader = new FileReader();
 
     fileReader.onload = function(evt) {
         var buffer = evt.target.result;
         var uint8Array = new Uint8Array(buffer);
-        PDFViewerApplication.open(uint8Array, 0);
+        PDFViewerApplication.open(uint8Array, 0).then(function() {
+            qpdfBridge.jsLoaded();
+        });
     };
 
     fileReader.readAsArrayBuffer(blob);
@@ -8034,18 +8038,22 @@ function showPdfFile(b64Data) {
 // The following code is required to communicate back
 // to Qt environment via QWebChannel
 
-var qpdfview;
-
 function qpdf_Initialize() {
     if (typeof qt != 'undefined') new QWebChannel(qt.webChannelTransport, function(channel) {
-        qpdfview = channel.objects.qpdfview;
+        qpdfBridge = channel.objects.qpdfbridge;
 
-        qpdfview.jsInitialized();
+        qpdfBridge.jsInitialized();
     });
 }
 
 function qpdf_FetchDestinations() {
     PDFViewerApplication.pdfDocument.getDestinations().then(function(destinations) {
-        qpdfview.jsReportDestinations(Object.keys(destinations));
+        qpdfBridge.jsReportDestinations(Object.keys(destinations));
+    });
+}
+
+function qpdf_Close() {
+    PDFViewerApplication.close().then(function() {
+        qpdfBridge.jsClosed();
     });
 }

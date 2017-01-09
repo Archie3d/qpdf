@@ -52,6 +52,11 @@ public:
     void loadData(const QByteArray &data);
 
     /**
+     * @brief Close PDF document.
+     */
+    void close();
+
+    /**
      * @brief Set current page.
      *
      * This will make the viewer to navigate to a specific
@@ -179,10 +184,18 @@ public:
      */
     QWebEngineView* internalWebEngineView() const;
 
+signals:
+
+    /**
+     * @brief Signal is emitted when document has been loaded.
+     */
+    void pdfDocumentLoaded();
+
 private slots:
 
     void onLoadFinished(bool status);
     void renderPdf();
+    void onRenderPdfFinished();
 
 private:
 

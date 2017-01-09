@@ -13,18 +13,19 @@
     Lesser General Public License for more details.
 */
 
-#ifndef WEBENGINEVIEW_H
-#define WEBENGINEVIEW_H
+#ifndef PDFJSBRIDGE_H
+#define PDFJSBRIDGE_H
 
 #include <QWebEngineView>
 #include <QSemaphore>
 
-class WebEngineView : public QWebEngineView
+class PdfJsBridge : public QWebEngineView
 {
     Q_OBJECT
 public:
 
-    WebEngineView(QWidget *pParent = nullptr);
+    PdfJsBridge(QWidget *pParent = nullptr);
+    ~PdfJsBridge();
 
     void invokeJavaScript(const QString &script);
 
@@ -32,10 +33,18 @@ public:
 
     QStringList fetchPdfDocumentDestinations();
 
+    void close();
+
+signals:
+
+    void pdfDocumentloaded();
+
 public slots:
 
     void jsInitialized();
     void jsReportDestinations(const QStringList &destinations);
+    void jsLoaded();
+    void jsClosed();
 
 protected:
     void contextMenuEvent(QContextMenuEvent *pEvent);
@@ -46,6 +55,7 @@ private slots:
 
 private:
 
+
     void establishWebChannel();
 
     QWebChannel *m_pWebChannel;
@@ -53,6 +63,8 @@ private:
 
     QStringList m_pdfDocumentDestinations;
 
+    QSemaphore m_pdfCloseSema;
+
 };
 
-#endif // WEBENGINEVIEW_H
+#endif // PDFJSBRIDGE_H

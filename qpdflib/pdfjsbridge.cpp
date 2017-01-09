@@ -17,17 +17,22 @@
 #include <QWebChannel>
 #include <QContextMenuEvent>
 #include <QSemaphore>
-#include "webengineview.h"
+#include "pdfjsbridge.h"
 
-WebEngineView::WebEngineView(QWidget *pParent)
+PdfJsBridge::PdfJsBridge(QWidget *pParent)
     : QWebEngineView(pParent)
 {
     m_pWebChannel = new QWebChannel(this);
 
-    connect(this, &QWebEngineView::loadFinished, this, &WebEngineView::onLoadFinished);
+    connect(this, &QWebEngineView::loadFinished, this, &PdfJsBridge::onLoadFinished);
 }
 
-void WebEngineView::invokeJavaScript(const QString &script)
+PdfJsBridge::~PdfJsBridge()
+{
+    close();
+}
+
+void PdfJsBridge::invokeJavaScript(const QString &script)
 {
     QWebEnginePage *pPage = page();
     if (pPage != nullptr) {
@@ -35,7 +40,7 @@ void WebEngineView::invokeJavaScript(const QString &script)
     }
 }
 
-QVariant WebEngineView::invokeJavaScriptAndWaitForResult(const QString &script)
+QVariant PdfJsBridge::invokeJavaScriptAndWaitForResult(const QString &script)
 {
     QVariant result;
     QWebEnginePage *pPage = page();
@@ -55,7 +60,7 @@ QVariant WebEngineView::invokeJavaScriptAndWaitForResult(const QString &script)
     return result;
 }
 
-QStringList WebEngineView::fetchPdfDocumentDestinations()
+QStringList PdfJsBridge::fetchPdfDocumentDestinations()
 {
     m_pdfDocumentDestinations.clear();
 
@@ -68,36 +73,54 @@ QStringList WebEngineView::fetchPdfDocumentDestinations()
     return m_pdfDocumentDestinations;
 }
 
-void WebEngineView::jsInitialized()
+void PdfJsBridge::close()
+{
+    invokeJavaScript("qpdf_Close();");
+    while (!m_pdfCloseSema.tryAcquire()) {
+        qApp->processEvents();
+    }
+}
+
+void PdfJsBridge::jsInitialized()
 {
     // Web view has been initialized
 }
 
-void WebEngineView::jsReportDestinations(const QStringList &destinations)
+void PdfJsBridge::jsReportDestinations(const QStringList &destinations)
 {
     m_pdfDocumentDestinations = destinations;
     m_pdfDestinationsSema.release();
 }
 
-void WebEngineView::contextMenuEvent(QContextMenuEvent *pEvent)
+void PdfJsBridge::jsLoaded()
+{
+    emit pdfDocumentloaded();
+}
+
+void PdfJsBridge::jsClosed()
+{
+    m_pdfCloseSema.release();
+}
+
+void PdfJsBridge::contextMenuEvent(QContextMenuEvent *pEvent)
 {
     // Disable context menu completely
     pEvent->ignore();
 }
 
-void WebEngineView::onLoadFinished(bool ok)
+void PdfJsBridge::onLoadFinished(bool ok)
 {
     if (ok) {
         establishWebChannel();
     }
 }
 
-void WebEngineView::establishWebChannel()
+void PdfJsBridge::establishWebChannel()
 {
     QWebEnginePage *pPage = page();
     if (pPage != nullptr) {
         pPage->setWebChannel(m_pWebChannel);
-        m_pWebChannel->registerObject("qpdfview", this);
+        m_pWebChannel->registerObject(QStringLiteral("qpdfbridge"), this);
 
         pPage->runJavaScript("qpdf_Initialize();");
     }
