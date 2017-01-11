@@ -18,6 +18,13 @@
 #include "pdfjsbridge.h"
 #include "qpdfwidget.h"
 
+// NOTE:
+// There is Qt bug https://bugreports.qt.io/browse/QTBUG-46973
+// which cases the application to crash when loading from qrc:/
+// Reported to be fixed as from Qt 5.6.0
+
+const QString cPdfViewerUrl("qrc:/pdfview/viewer.html");
+
 // class private members
 struct QPdfWidgetPrivate
 {
@@ -36,7 +43,7 @@ QPdfWidget::QPdfWidget(QWidget *pParent)
     m->ready = false;
 
     // Initialize pdf.js viewer
-    QUrl url = QUrl::fromUserInput("qrc:/pdfview/viewer.html");
+    QUrl url = QUrl::fromUserInput(cPdfViewerUrl);
     m->pPdfJsBridge->setUrl(url);
 
     // widget layout

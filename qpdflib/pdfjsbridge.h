@@ -17,14 +17,20 @@
 #define PDFJSBRIDGE_H
 
 #include <QWebEngineView>
+#include <QPointer>
 #include <QSemaphore>
+
+class BridgeObject;
 
 class PdfJsBridge : public QWebEngineView
 {
     Q_OBJECT
+
+    friend class BridgeObject;
+
 public:
 
-    PdfJsBridge(QWidget *pParent = nullptr);
+    explicit PdfJsBridge(QWidget *pParent = nullptr);
     ~PdfJsBridge();
 
     void invokeJavaScript(const QString &script);
@@ -39,13 +45,6 @@ signals:
 
     void pdfDocumentloaded();
 
-public slots:
-
-    void jsInitialized();
-    void jsReportDestinations(const QStringList &destinations);
-    void jsLoaded();
-    void jsClosed();
-
 protected:
     void contextMenuEvent(QContextMenuEvent *pEvent);
 
@@ -55,6 +54,10 @@ private slots:
 
 private:
 
+    void jsInitialized();
+    void jsReportDestinations(const QStringList &destinations);
+    void jsLoaded();
+    void jsClosed();
 
     void establishWebChannel();
 
@@ -65,6 +68,27 @@ private:
 
     QSemaphore m_pdfCloseSema;
 
+    BridgeObject *m_pBridgeObject;
+
+};
+
+class BridgeObject : public QObject
+{
+    Q_OBJECT
+public:
+
+    explicit BridgeObject(PdfJsBridge *pBridge);
+
+public slots:
+
+    void jsInitialized();
+    void jsReportDestinations(const QStringList &destinations);
+    void jsLoaded();
+    void jsClosed();
+
+private:
+
+    QPointer<PdfJsBridge> m_bridgePtr;
 };
 
 #endif // PDFJSBRIDGE_H

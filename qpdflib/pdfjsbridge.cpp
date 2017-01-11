@@ -23,13 +23,14 @@ PdfJsBridge::PdfJsBridge(QWidget *pParent)
     : QWebEngineView(pParent)
 {
     m_pWebChannel = new QWebChannel(this);
+    m_pBridgeObject = new BridgeObject(this);
 
     connect(this, &QWebEngineView::loadFinished, this, &PdfJsBridge::onLoadFinished);
 }
 
 PdfJsBridge::~PdfJsBridge()
 {
-    close();
+    delete m_pWebChannel;
 }
 
 void PdfJsBridge::invokeJavaScript(const QString &script)
@@ -120,8 +121,39 @@ void PdfJsBridge::establishWebChannel()
     QWebEnginePage *pPage = page();
     if (pPage != nullptr) {
         pPage->setWebChannel(m_pWebChannel);
-        m_pWebChannel->registerObject(QStringLiteral("qpdfbridge"), this);
+        m_pWebChannel->registerObject(QStringLiteral("qpdfbridge"), m_pBridgeObject);
 
         pPage->runJavaScript("qpdf_Initialize();");
     }
+}
+
+//
+//  BridgeObject implementation
+//
+
+BridgeObject::BridgeObject(PdfJsBridge *pBridge)
+    : QObject(pBridge),
+      m_bridgePtr(pBridge)
+{
+    Q_ASSERT(pBridge != nullptr);
+}
+
+void BridgeObject::jsInitialized()
+{
+    m_bridgePtr->jsInitialized();
+}
+
+void BridgeObject::jsReportDestinations(const QStringList &destinations)
+{
+    m_bridgePtr->jsReportDestinations(destinations);
+}
+
+void BridgeObject::jsLoaded()
+{
+    m_bridgePtr->jsLoaded();
+}
+
+void BridgeObject::jsClosed()
+{
+    m_bridgePtr->jsClosed();
 }
