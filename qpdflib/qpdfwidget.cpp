@@ -19,8 +19,8 @@
 #include "qpdfwidget.h"
 
 // NOTE:
-// There is Qt bug https://bugreports.qt.io/browse/QTBUG-46973
-// which cases the application to crash when loading from qrc:/
+// There is this bug in Qt https://bugreports.qt.io/browse/QTBUG-46973
+// which causes the application to crash when loading from qrc:/ resources.
 // Reported to be fixed as from Qt 5.6.0
 
 const QString cPdfViewerUrl("qrc:/pdfview/viewer.html");
