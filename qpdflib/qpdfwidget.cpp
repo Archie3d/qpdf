@@ -137,6 +137,11 @@ void QPdfWidget::showDocumentProperties()
     m->pPdfJsBridge->invokeJavaScript("PDFViewerApplication.pdfDocumentProperties.open()");
 }
 
+void QPdfWidget::setToolbarVisible(bool v)
+{
+    m->pPdfJsBridge->setToolbarVisible(v);
+}
+
 void QPdfWidget::setFindBarVisible(bool v)
 {
     QString script = QString("PDFViewerApplication.findBar.%1()")
@@ -144,21 +149,28 @@ void QPdfWidget::setFindBarVisible(bool v)
     m->pPdfJsBridge->invokeJavaScript(script);
 }
 
-void QPdfWidget::findNext(const QString &text)
+void QPdfWidget::findText(const QString &text)
 {
     if (!text.isEmpty()) {
         setFindFieldText(text);
     }
+    // Sending an empty event will actually send 'find' since it will be prepended to
+    // the event name.
+    // All options options are (viewer.js:1155):
+    // 'find',
+    // 'findagain',
+    // 'findhighlightallchange',
+    // 'findcasesensitivitychange'
+    m->pPdfJsBridge->invokeJavaScript("PDFViewerApplication.findBar.dispatchEvent('', false);");
+}
 
+void QPdfWidget::findNext()
+{
     m->pPdfJsBridge->invokeJavaScript("PDFViewerApplication.findBar.dispatchEvent('again', false);");
 }
 
-void QPdfWidget::findPrevious(const QString &text)
+void QPdfWidget::findPrevious()
 {
-    if (!text.isEmpty()) {
-        setFindFieldText(text);
-    }
-
     m->pPdfJsBridge->invokeJavaScript("PDFViewerApplication.findBar.dispatchEvent('again', true);");
 }
 

@@ -8052,6 +8052,18 @@ function qpdf_FetchDestinations() {
     });
 }
 
+function qpdf_ShowToolbar(visible) {
+    var toolbar = document.getElementById('topLevelToolbar');
+    var viewer = document.getElementById('viewerContainer');
+    if (visible) {
+        viewer.style.top = '';
+        toolbar.style.display = '';
+    } else {
+        toolbar.style.display = 'none';
+        viewer.style.top = 0;
+    }
+}
+
 function qpdf_Close() {
     PDFViewerApplication.close().then(function() {
         qpdfBridge.jsClosed();

@@ -74,6 +74,12 @@ QStringList PdfJsBridge::fetchPdfDocumentDestinations()
     return m_pdfDocumentDestinations;
 }
 
+void PdfJsBridge::setToolbarVisible(bool visible)
+{
+    invokeJavaScript(QString("qpdf_ShowToolbar(%1)")
+                     .arg(visible ? "true" : "false"));
+}
+
 void PdfJsBridge::close()
 {
     invokeJavaScript("qpdf_Close();");

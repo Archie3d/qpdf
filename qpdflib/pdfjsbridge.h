@@ -39,6 +39,8 @@ public:
 
     QStringList fetchPdfDocumentDestinations();
 
+    void setToolbarVisible(bool visible);
+
     void close();
 
 signals:

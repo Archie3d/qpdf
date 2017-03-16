@@ -32,7 +32,7 @@ See https://github.com/adobe-type-tools/cmap-resources
     <link rel="stylesheet" href="viewer.css"/>
 
     <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>
-    
+
     <script src="compatibility.js"></script>
 
 
@@ -151,7 +151,7 @@ See https://github.com/adobe-type-tools/cmap-resources
           </div>
         </div>  <!-- secondaryToolbar -->
 
-        <div class="toolbar">
+        <div class="toolbar" id="topLevelToolbar">
           <div id="toolbarContainer">
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
@@ -177,7 +177,7 @@ See https://github.com/adobe-type-tools/cmap-resources
               </div>
               <div id="toolbarViewerRight">
                 <!-- Disable tools, which are irrelevant to the offline desktop PDF viewer
-                
+
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
                 </button>

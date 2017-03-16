@@ -122,6 +122,15 @@ public:
     void showDocumentProperties();
 
     /**
+     * @brief Set toolbar visibility.
+     *
+     * Toolbar is visible by default on the top of the PDF view.
+     *
+     * @param v true to show the toolbar, false to hide it.
+     */
+    void setToolbarVisible(bool v);
+
+    /**
      * @brief Set find bar visibility.
      * @param v true to show the find bar, false to hide it.
      */
@@ -133,19 +142,32 @@ public:
      * This method searches the text from the current view position
      * till the end of the document. Found text will be highlighted.
      *
-     * @param text Text to find.
+     * The following occurrence of the text can be found via \ref findNext
+     * or \ref findPrevious methods.
+     *
+     * @see findNext
+     * @see findPrevious
      */
-    void findNext(const QString &text = QString());
+    void findText(const QString &text = QString());
 
     /**
-     * @brief Find text in the document.
+     * @brief Find a next occurrence of the search string.
      *
-     * This method searches the text from the current view position
-     * up to the beginning of the document. Found text will be highlighted.
+     * This method continues the search initiated by \ref findText.
      *
-     * @param text Text to find.
+     * @see findText
      */
-    void findPrevious(const QString &text = QString());
+    void findNext();
+
+    /**
+     * @brief Find previous occurrence of the search string.
+     *
+     * This method searches the text backwards for another occurrence
+     * of the search string.
+     *
+     * @see findText
+     */
+    void findPrevious();
 
     /**
      * @brief Returns the number of matches found.
