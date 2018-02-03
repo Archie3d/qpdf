@@ -15,6 +15,7 @@
 
 #include <QApplication>
 #include <QWebChannel>
+#include <QWebEngineSettings>
 #include <QContextMenuEvent>
 #include <QSemaphore>
 #include "pdfjsbridge.h"

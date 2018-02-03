@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>pdfview/compatibility.js</file>
         <file>pdfview/debugger.js</file>
-        <file>pdfview/l10n.js</file>
         <file>pdfview/pdf.js</file>
         <file>pdfview/pdf.worker.js</file>
         <file>pdfview/viewer.css</file>
@@ -18,74 +16,42 @@
         <file>pdfview/images/annotation-note.svg</file>
         <file>pdfview/images/annotation-paragraph.svg</file>
         <file>pdfview/images/findbarButton-next.png</file>
-        <file>pdfview/images/findbarButton-next_2x.png</file>
         <file>pdfview/images/findbarButton-next-rtl.png</file>
-        <file>pdfview/images/findbarButton-next-rtl_2x.png</file>
         <file>pdfview/images/findbarButton-previous.png</file>
-        <file>pdfview/images/findbarButton-previous_2x.png</file>
         <file>pdfview/images/findbarButton-previous-rtl.png</file>
-        <file>pdfview/images/findbarButton-previous-rtl_2x.png</file>
         <file>pdfview/images/grab.cur</file>
         <file>pdfview/images/grabbing.cur</file>
         <file>pdfview/images/loading-icon.gif</file>
         <file>pdfview/images/loading-small.png</file>
-        <file>pdfview/images/loading-small_2x.png</file>
         <file>pdfview/images/secondaryToolbarButton-documentProperties.png</file>
-        <file>pdfview/images/secondaryToolbarButton-documentProperties_2x.png</file>
         <file>pdfview/images/secondaryToolbarButton-firstPage.png</file>
-        <file>pdfview/images/secondaryToolbarButton-firstPage_2x.png</file>
         <file>pdfview/images/secondaryToolbarButton-handTool.png</file>
-        <file>pdfview/images/secondaryToolbarButton-handTool_2x.png</file>
         <file>pdfview/images/secondaryToolbarButton-lastPage.png</file>
-        <file>pdfview/images/secondaryToolbarButton-lastPage_2x.png</file>
         <file>pdfview/images/secondaryToolbarButton-rotateCcw.png</file>
-        <file>pdfview/images/secondaryToolbarButton-rotateCcw_2x.png</file>
         <file>pdfview/images/secondaryToolbarButton-rotateCw.png</file>
-        <file>pdfview/images/secondaryToolbarButton-rotateCw_2x.png</file>
         <file>pdfview/images/shadow.png</file>
         <file>pdfview/images/texture.png</file>
         <file>pdfview/images/toolbarButton-bookmark.png</file>
-        <file>pdfview/images/toolbarButton-bookmark_2x.png</file>
         <file>pdfview/images/toolbarButton-download.png</file>
-        <file>pdfview/images/toolbarButton-download_2x.png</file>
         <file>pdfview/images/toolbarButton-menuArrows.png</file>
-        <file>pdfview/images/toolbarButton-menuArrows_2x.png</file>
         <file>pdfview/images/toolbarButton-openFile.png</file>
-        <file>pdfview/images/toolbarButton-openFile_2x.png</file>
         <file>pdfview/images/toolbarButton-pageDown.png</file>
-        <file>pdfview/images/toolbarButton-pageDown_2x.png</file>
         <file>pdfview/images/toolbarButton-pageDown-rtl.png</file>
-        <file>pdfview/images/toolbarButton-pageDown-rtl_2x.png</file>
         <file>pdfview/images/toolbarButton-pageUp.png</file>
-        <file>pdfview/images/toolbarButton-pageUp_2x.png</file>
         <file>pdfview/images/toolbarButton-pageUp-rtl.png</file>
-        <file>pdfview/images/toolbarButton-pageUp-rtl_2x.png</file>
         <file>pdfview/images/toolbarButton-presentationMode.png</file>
-        <file>pdfview/images/toolbarButton-presentationMode_2x.png</file>
         <file>pdfview/images/toolbarButton-print.png</file>
-        <file>pdfview/images/toolbarButton-print_2x.png</file>
         <file>pdfview/images/toolbarButton-search.png</file>
-        <file>pdfview/images/toolbarButton-search_2x.png</file>
         <file>pdfview/images/toolbarButton-secondaryToolbarToggle.png</file>
-        <file>pdfview/images/toolbarButton-secondaryToolbarToggle_2x.png</file>
         <file>pdfview/images/toolbarButton-secondaryToolbarToggle-rtl.png</file>
-        <file>pdfview/images/toolbarButton-secondaryToolbarToggle-rtl_2x.png</file>
         <file>pdfview/images/toolbarButton-sidebarToggle.png</file>
-        <file>pdfview/images/toolbarButton-sidebarToggle_2x.png</file>
         <file>pdfview/images/toolbarButton-sidebarToggle-rtl.png</file>
-        <file>pdfview/images/toolbarButton-sidebarToggle-rtl_2x.png</file>
         <file>pdfview/images/toolbarButton-viewAttachments.png</file>
-        <file>pdfview/images/toolbarButton-viewAttachments_2x.png</file>
         <file>pdfview/images/toolbarButton-viewOutline.png</file>
-        <file>pdfview/images/toolbarButton-viewOutline_2x.png</file>
         <file>pdfview/images/toolbarButton-viewOutline-rtl.png</file>
-        <file>pdfview/images/toolbarButton-viewOutline-rtl_2x.png</file>
         <file>pdfview/images/toolbarButton-viewThumbnail.png</file>
-        <file>pdfview/images/toolbarButton-viewThumbnail_2x.png</file>
         <file>pdfview/images/toolbarButton-zoomIn.png</file>
-        <file>pdfview/images/toolbarButton-zoomIn_2x.png</file>
         <file>pdfview/images/toolbarButton-zoomOut.png</file>
-        <file>pdfview/images/toolbarButton-zoomOut_2x.png</file>
         <file>pdfview/locale/locale.properties</file>
         <file>pdfview/locale/en-US/viewer.properties</file>
         <file>pdfview/cmaps/78-EUC-H.bcmap</file>
@@ -257,5 +223,148 @@
         <file>pdfview/cmaps/UniKS-UTF32-V.bcmap</file>
         <file>pdfview/cmaps/V.bcmap</file>
         <file>pdfview/cmaps/WP-Symbol.bcmap</file>
+        <file>pdfview/images/findbarButton-next@2x.png</file>
+        <file>pdfview/images/findbarButton-next-rtl@2x.png</file>
+        <file>pdfview/images/findbarButton-previous@2x.png</file>
+        <file>pdfview/images/findbarButton-previous-rtl@2x.png</file>
+        <file>pdfview/images/loading-small@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-documentProperties@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-firstPage@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-handTool@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-lastPage@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-rotateCcw@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-rotateCw@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-selectTool.png</file>
+        <file>pdfview/images/secondaryToolbarButton-selectTool@2x.png</file>
+        <file>pdfview/images/toolbarButton-bookmark@2x.png</file>
+        <file>pdfview/images/toolbarButton-download@2x.png</file>
+        <file>pdfview/images/toolbarButton-menuArrows@2x.png</file>
+        <file>pdfview/images/toolbarButton-openFile@2x.png</file>
+        <file>pdfview/images/toolbarButton-pageDown@2x.png</file>
+        <file>pdfview/images/toolbarButton-pageDown-rtl@2x.png</file>
+        <file>pdfview/images/toolbarButton-pageUp@2x.png</file>
+        <file>pdfview/images/toolbarButton-pageUp-rtl@2x.png</file>
+        <file>pdfview/images/toolbarButton-presentationMode@2x.png</file>
+        <file>pdfview/images/toolbarButton-print@2x.png</file>
+        <file>pdfview/images/toolbarButton-search@2x.png</file>
+        <file>pdfview/images/toolbarButton-secondaryToolbarToggle@2x.png</file>
+        <file>pdfview/images/toolbarButton-secondaryToolbarToggle-rtl@2x.png</file>
+        <file>pdfview/images/toolbarButton-sidebarToggle@2x.png</file>
+        <file>pdfview/images/toolbarButton-sidebarToggle-rtl@2x.png</file>
+        <file>pdfview/images/toolbarButton-viewAttachments@2x.png</file>
+        <file>pdfview/images/toolbarButton-viewOutline@2x.png</file>
+        <file>pdfview/images/toolbarButton-viewOutline-rtl@2x.png</file>
+        <file>pdfview/images/toolbarButton-viewThumbnail@2x.png</file>
+        <file>pdfview/images/toolbarButton-zoomIn@2x.png</file>
+        <file>pdfview/images/toolbarButton-zoomOut@2x.png</file>
+        <file>pdfview/images/treeitem-collapsed.png</file>
+        <file>pdfview/images/treeitem-collapsed@2x.png</file>
+        <file>pdfview/images/treeitem-collapsed-rtl.png</file>
+        <file>pdfview/images/treeitem-collapsed-rtl@2x.png</file>
+        <file>pdfview/images/treeitem-expanded.png</file>
+        <file>pdfview/images/treeitem-expanded@2x.png</file>
+        <file>pdfview/locale/ach/viewer.properties</file>
+        <file>pdfview/locale/af/viewer.properties</file>
+        <file>pdfview/locale/ak/viewer.properties</file>
+        <file>pdfview/locale/an/viewer.properties</file>
+        <file>pdfview/locale/ar/viewer.properties</file>
+        <file>pdfview/locale/as/viewer.properties</file>
+        <file>pdfview/locale/ast/viewer.properties</file>
+        <file>pdfview/locale/az/viewer.properties</file>
+        <file>pdfview/locale/be/viewer.properties</file>
+        <file>pdfview/locale/bg/viewer.properties</file>
+        <file>pdfview/locale/bn-BD/viewer.properties</file>
+        <file>pdfview/locale/bn-IN/viewer.properties</file>
+        <file>pdfview/locale/br/viewer.properties</file>
+        <file>pdfview/locale/bs/viewer.properties</file>
+        <file>pdfview/locale/ca/viewer.properties</file>
+        <file>pdfview/locale/cs/viewer.properties</file>
+        <file>pdfview/locale/csb/viewer.properties</file>
+        <file>pdfview/locale/cy/viewer.properties</file>
+        <file>pdfview/locale/da/viewer.properties</file>
+        <file>pdfview/locale/de/viewer.properties</file>
+        <file>pdfview/locale/el/viewer.properties</file>
+        <file>pdfview/locale/en-GB/viewer.properties</file>
+        <file>pdfview/locale/en-ZA/viewer.properties</file>
+        <file>pdfview/locale/eo/viewer.properties</file>
+        <file>pdfview/locale/es-AR/viewer.properties</file>
+        <file>pdfview/locale/es-CL/viewer.properties</file>
+        <file>pdfview/locale/es-ES/viewer.properties</file>
+        <file>pdfview/locale/es-MX/viewer.properties</file>
+        <file>pdfview/locale/et/viewer.properties</file>
+        <file>pdfview/locale/eu/viewer.properties</file>
+        <file>pdfview/locale/fa/viewer.properties</file>
+        <file>pdfview/locale/ff/viewer.properties</file>
+        <file>pdfview/locale/fi/viewer.properties</file>
+        <file>pdfview/locale/fr/viewer.properties</file>
+        <file>pdfview/locale/fy-NL/viewer.properties</file>
+        <file>pdfview/locale/ga-IE/viewer.properties</file>
+        <file>pdfview/locale/gd/viewer.properties</file>
+        <file>pdfview/locale/gl/viewer.properties</file>
+        <file>pdfview/locale/gu-IN/viewer.properties</file>
+        <file>pdfview/locale/he/viewer.properties</file>
+        <file>pdfview/locale/hi-IN/viewer.properties</file>
+        <file>pdfview/locale/hr/viewer.properties</file>
+        <file>pdfview/locale/hu/viewer.properties</file>
+        <file>pdfview/locale/hy-AM/viewer.properties</file>
+        <file>pdfview/locale/id/viewer.properties</file>
+        <file>pdfview/locale/is/viewer.properties</file>
+        <file>pdfview/locale/it/viewer.properties</file>
+        <file>pdfview/locale/ja/viewer.properties</file>
+        <file>pdfview/locale/ka/viewer.properties</file>
+        <file>pdfview/locale/kk/viewer.properties</file>
+        <file>pdfview/locale/km/viewer.properties</file>
+        <file>pdfview/locale/kn/viewer.properties</file>
+        <file>pdfview/locale/ko/viewer.properties</file>
+        <file>pdfview/locale/ku/viewer.properties</file>
+        <file>pdfview/locale/lg/viewer.properties</file>
+        <file>pdfview/locale/lij/viewer.properties</file>
+        <file>pdfview/locale/lt/viewer.properties</file>
+        <file>pdfview/locale/lv/viewer.properties</file>
+        <file>pdfview/locale/mai/viewer.properties</file>
+        <file>pdfview/locale/mk/viewer.properties</file>
+        <file>pdfview/locale/ml/viewer.properties</file>
+        <file>pdfview/locale/mn/viewer.properties</file>
+        <file>pdfview/locale/mr/viewer.properties</file>
+        <file>pdfview/locale/ms/viewer.properties</file>
+        <file>pdfview/locale/my/viewer.properties</file>
+        <file>pdfview/locale/nb-NO/viewer.properties</file>
+        <file>pdfview/locale/nl/viewer.properties</file>
+        <file>pdfview/locale/nn-NO/viewer.properties</file>
+        <file>pdfview/locale/nso/viewer.properties</file>
+        <file>pdfview/locale/oc/viewer.properties</file>
+        <file>pdfview/locale/or/viewer.properties</file>
+        <file>pdfview/locale/pa-IN/viewer.properties</file>
+        <file>pdfview/locale/pl/viewer.properties</file>
+        <file>pdfview/locale/pt-BR/viewer.properties</file>
+        <file>pdfview/locale/pt-PT/viewer.properties</file>
+        <file>pdfview/locale/rm/viewer.properties</file>
+        <file>pdfview/locale/ro/viewer.properties</file>
+        <file>pdfview/locale/ru/viewer.properties</file>
+        <file>pdfview/locale/rw/viewer.properties</file>
+        <file>pdfview/locale/sah/viewer.properties</file>
+        <file>pdfview/locale/si/viewer.properties</file>
+        <file>pdfview/locale/sk/viewer.properties</file>
+        <file>pdfview/locale/sl/viewer.properties</file>
+        <file>pdfview/locale/son/viewer.properties</file>
+        <file>pdfview/locale/sq/viewer.properties</file>
+        <file>pdfview/locale/sr/viewer.properties</file>
+        <file>pdfview/locale/sv-SE/viewer.properties</file>
+        <file>pdfview/locale/sw/viewer.properties</file>
+        <file>pdfview/locale/ta/viewer.properties</file>
+        <file>pdfview/locale/ta-LK/viewer.properties</file>
+        <file>pdfview/locale/te/viewer.properties</file>
+        <file>pdfview/locale/th/viewer.properties</file>
+        <file>pdfview/locale/tl/viewer.properties</file>
+        <file>pdfview/locale/tn/viewer.properties</file>
+        <file>pdfview/locale/tr/viewer.properties</file>
+        <file>pdfview/locale/uk/viewer.properties</file>
+        <file>pdfview/locale/ur/viewer.properties</file>
+        <file>pdfview/locale/vi/viewer.properties</file>
+        <file>pdfview/locale/wo/viewer.properties</file>
+        <file>pdfview/locale/xh/viewer.properties</file>
+        <file>pdfview/locale/zh-CN/viewer.properties</file>
+        <file>pdfview/locale/zh-TW/viewer.properties</file>
+        <file>pdfview/locale/zu/viewer.properties</file>
     </qresource>
 </RCC>

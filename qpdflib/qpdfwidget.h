@@ -216,7 +216,7 @@ signals:
 private slots:
 
     void onLoadFinished(bool status);
-    void renderPdf();
+    void renderPdfData();
     void onRenderPdfFinished();
 
 private:

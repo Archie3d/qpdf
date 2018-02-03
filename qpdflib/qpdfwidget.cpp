@@ -13,7 +13,9 @@
     Lesser General Public License for more details.
 */
 
+#include <QDebug>
 #include <QFile>
+#include <QFileInfo>
 #include <QVBoxLayout>
 #include "pdfjsbridge.h"
 #include "qpdfwidget.h"
@@ -64,7 +66,7 @@ bool QPdfWidget::loadFile(const QString &path)
     if (file.open(QIODevice::ReadOnly)) {
         m->pdfData = file.readAll();
         file.close();
-        renderPdf();
+        renderPdfData();
         return true;
     }
 
@@ -74,7 +76,7 @@ bool QPdfWidget::loadFile(const QString &path)
 void QPdfWidget::loadData(const QByteArray &data)
 {
     m->pdfData = data;
-    renderPdf();
+    renderPdfData();
 }
 
 void QPdfWidget::close()
@@ -211,18 +213,18 @@ void QPdfWidget::onLoadFinished(bool status)
 
     m->ready = true;
     if (!m->pdfData.isEmpty()) {
-        renderPdf();
+        renderPdfData();
     }
 }
 
-void QPdfWidget::renderPdf()
+void QPdfWidget::renderPdfData()
 {
     if (!m->ready) {
         return;
     }
 
     m->pdfData = m->pdfData.toBase64();
-    QString script = QString("qpdf_ShowPdfFile('%1')")
+    QString script = QString("qpdf_ShowPdfFileBase64('%1')")
                         .arg(QString::fromUtf8(m->pdfData));
 
     m->pPdfJsBridge->invokeJavaScript(script);

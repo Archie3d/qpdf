@@ -23,7 +23,14 @@
 
 int main(int argc, char **argv)
 {
-    QApplication app(argc, argv);
+    int nargs = argc + 1;
+    char** args = new char*[nargs];
+    for (int i = 0; i < argc; i++) {
+        args[i] = argv[i];
+    }
+    args[argc] = (char*)"--disable-web-secutiry";
+
+    QApplication app(nargs, args);
 
     MainWindow mainWindow;
     mainWindow.show();
@@ -36,5 +43,9 @@ int main(int argc, char **argv)
         });
     }
 
-    return app.exec();
+    int ret = app.exec();
+
+    delete[] args;
+
+    return ret;
 }
