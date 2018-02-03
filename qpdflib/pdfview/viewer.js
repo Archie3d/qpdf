@@ -10225,6 +10225,12 @@ function b64toBlob(b64Data, contentType, sliceSize) {
     return blob;
 }
 
+function qpdf_ShowPdfFile(file) {
+    PDFViewerApplication.open(file).then(function() {
+        qpdfBridge.jsLoaded();
+    });
+}
+
 function qpdf_ShowPdfFileBase64(b64Data) {
     var blob = b64toBlob(b64Data);
     var fileReader = new FileReader();

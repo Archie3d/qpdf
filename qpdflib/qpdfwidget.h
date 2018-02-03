@@ -217,6 +217,7 @@ private slots:
 
     void onLoadFinished(bool status);
     void renderPdfData();
+    void renderPdfFile(const QString &file);
     void onRenderPdfFinished();
 
 private:

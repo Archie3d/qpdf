@@ -33,6 +33,7 @@ struct QPdfWidgetPrivate
     PdfJsBridge *pPdfJsBridge;
     bool ready;
     QByteArray pdfData;
+    QString pdfFile;
 };
 
 QPdfWidget::QPdfWidget(QWidget *pParent)
@@ -62,11 +63,10 @@ QPdfWidget::~QPdfWidget()
 
 bool QPdfWidget::loadFile(const QString &path)
 {
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly)) {
-        m->pdfData = file.readAll();
-        file.close();
-        renderPdfData();
+    QFileInfo fi(path);
+    if (fi.exists()) {
+        m->pdfFile = path;
+        renderPdfFile(path);
         return true;
     }
 
@@ -214,6 +214,8 @@ void QPdfWidget::onLoadFinished(bool status)
     m->ready = true;
     if (!m->pdfData.isEmpty()) {
         renderPdfData();
+    } else if (!m->pdfFile.isEmpty()) {
+        renderPdfFile(m->pdfFile);
     }
 }
 
@@ -232,6 +234,23 @@ void QPdfWidget::renderPdfData()
     // Clear pdf data
     m->pdfData.clear();
 }
+
+void QPdfWidget::renderPdfFile(const QString &file)
+{
+    if (!m->ready) {
+        return;
+    }
+
+    m->pdfData = m->pdfData.toBase64();
+    QString script = QString("qpdf_ShowPdfFile('%1')")
+                        .arg(file);
+
+    m->pPdfJsBridge->invokeJavaScript(script);
+
+    // Clear pdf data
+    m->pdfData.clear();
+}
+
 
 void QPdfWidget::onRenderPdfFinished()
 {

@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     for (int i = 0; i < argc; i++) {
         args[i] = argv[i];
     }
-    args[argc] = (char*)"--disable-web-secutiry";
+    args[argc] = (char*)"--disable-web-security";
 
     QApplication app(nargs, args);
 
