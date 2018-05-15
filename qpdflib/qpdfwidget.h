@@ -209,6 +209,14 @@ public:
 signals:
 
     /**
+     * @brief Signal is emitted when widget is initialized.
+     *
+     * Because it takes time to load the PDF viewer web context,
+     * this signal can be used to notify on the view bein initialized.
+     */
+    void initialized();
+
+    /**
      * @brief Signal is emitted when document has been loaded.
      */
     void pdfDocumentLoaded();

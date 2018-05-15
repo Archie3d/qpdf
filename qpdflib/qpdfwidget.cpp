@@ -41,6 +41,7 @@ QPdfWidget::QPdfWidget(QWidget *pParent)
 {
     m = new QPdfWidgetPrivate;
     m->pPdfJsBridge = new PdfJsBridge();
+    connect(m->pPdfJsBridge, &PdfJsBridge::initialized, this, &QPdfWidget::initialized);
     connect(m->pPdfJsBridge, &PdfJsBridge::loadFinished, this, &QPdfWidget::onLoadFinished);
     connect(m->pPdfJsBridge, &PdfJsBridge::pdfDocumentloaded, this, &QPdfWidget::onRenderPdfFinished);
     m->ready = false;

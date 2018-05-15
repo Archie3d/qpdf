@@ -45,6 +45,8 @@ public:
 
 signals:
 
+    void initialized();
+
     void pdfDocumentloaded();
 
 protected:

@@ -120,6 +120,7 @@ void PdfJsBridge::onLoadFinished(bool ok)
 {
     if (ok) {
         establishWebChannel();
+        emit initialized();
     }
 }
 
