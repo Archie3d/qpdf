@@ -54,7 +54,7 @@ public:
     /**
      * @brief Close PDF document.
      */
-    void close();
+    void closeDocument();
 
     /**
      * @brief Set current page.

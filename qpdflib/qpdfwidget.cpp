@@ -80,7 +80,7 @@ void QPdfWidget::loadData(const QByteArray &data)
     renderPdfData();
 }
 
-void QPdfWidget::close()
+void QPdfWidget::closeDocument()
 {
     m->pPdfJsBridge->close();
 }
