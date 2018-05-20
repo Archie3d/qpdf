@@ -82,7 +82,7 @@ void QPdfWidget::loadData(const QByteArray &data)
 
 void QPdfWidget::close()
 {
-    m->pPdfJsBridge->invokeJavaScript("PDFViewerApplication.close()");
+    m->pPdfJsBridge->close();
 }
 
 void QPdfWidget::setPage(int page)
