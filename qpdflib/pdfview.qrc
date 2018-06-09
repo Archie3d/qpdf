@@ -366,5 +366,6 @@
         <file>pdfview/locale/zh-CN/viewer.properties</file>
         <file>pdfview/locale/zh-TW/viewer.properties</file>
         <file>pdfview/locale/zu/viewer.properties</file>
+        <file>pdfview/qpdf.css</file>
     </qresource>
 </RCC>
