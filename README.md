@@ -20,9 +20,9 @@ Open PDF files
 * [QPdfWidget::loadData(const QByteArray& pdfData);](https://github.com/Archie3d/qpdf/blob/bc1be22d25f6f3fc8310cc87f6afcfee6e480d8d/qpdflib/qpdfwidget.h#L52)
 * [QPdfWidget::loadFile(const QString& filePath);](https://github.com/Archie3d/qpdf/blob/bc1be22d25f6f3fc8310cc87f6afcfee6e480d8d/qpdflib/qpdfwidget.h#L46)
 
-`loadData` method serializes PDF data as base64 string and injects it into JavaScript environment. This may fails however when loading huge PDF files
+`loadData` method serializes PDF data as base64 string and injects it into JavaScript environment. This may fails however when loading huge PDF files.
 
-`loadFile` can PDFs of any size, however it faces cross-origin security restriction since it uses WebEngine's load URL method. In order to make this method work, you have to disable web security by passing `--disable-web-security` argument to your `QApplication` instance (see how its done in [pdfviwer example](https://github.com/Archie3d/qpdf/blob/bc1be22d25f6f3fc8310cc87f6afcfee6e480d8d/pdfviewer/main.cpp#L31)).
+`loadFile` can load PDFs of any size, however the method is blocked by default due to the cross-origin security restriction, since it uses WebEngine's load URL method. In order to make this method work, you have to disable web security by passing `--disable-web-security` argument to your `QApplication` instance (see how its done in [pdfviwer example](https://github.com/Archie3d/qpdf/blob/bc1be22d25f6f3fc8310cc87f6afcfee6e480d8d/pdfviewer/main.cpp#L31)).
 
 Debugging
 ---------
