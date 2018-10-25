@@ -15,6 +15,7 @@
 
 #include <QApplication>
 #include <QTimer>
+#include "qpdfwidget.h"
 #include "mainwindow.h"
 
 // This is a simple application that demonstrated the QPdfWidget usage.
@@ -23,6 +24,9 @@
 
 int main(int argc, char **argv)
 {
+#ifdef QPDF_WIDGET_USE_CORS
+    // Disable web security when using cross-origin URL fetch.
+
     int nargs = argc + 1;
     char** args = new char*[nargs];
     for (int i = 0; i < argc; i++) {
@@ -31,6 +35,9 @@ int main(int argc, char **argv)
     args[argc] = (char*)"--disable-web-security";
 
     QApplication app(nargs, args);
+#else
+    QApplication app(argc, argv);
+#endif
 
     MainWindow mainWindow;
     mainWindow.show();
@@ -45,7 +52,9 @@ int main(int argc, char **argv)
 
     int ret = app.exec();
 
+#ifdef QPDF_WIDGET_USE_CORS
     delete[] args;
+#endif
 
     return ret;
 }

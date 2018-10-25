@@ -367,5 +367,17 @@
         <file>pdfview/locale/zh-TW/viewer.properties</file>
         <file>pdfview/locale/zu/viewer.properties</file>
         <file>pdfview/qpdf.css</file>
+        <file>pdfview/images/secondaryToolbarButton-scrollHorizontal.png</file>
+        <file>pdfview/images/secondaryToolbarButton-scrollHorizontal@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-scrollVertical.png</file>
+        <file>pdfview/images/secondaryToolbarButton-scrollVertical@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-scrollWrapped.png</file>
+        <file>pdfview/images/secondaryToolbarButton-scrollWrapped@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-spreadEven.png</file>
+        <file>pdfview/images/secondaryToolbarButton-spreadEven@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-spreadNone.png</file>
+        <file>pdfview/images/secondaryToolbarButton-spreadNone@2x.png</file>
+        <file>pdfview/images/secondaryToolbarButton-spreadOdd.png</file>
+        <file>pdfview/images/secondaryToolbarButton-spreadOdd@2x.png</file>
     </qresource>
 </RCC>

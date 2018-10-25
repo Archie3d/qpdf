@@ -67,7 +67,17 @@ bool QPdfWidget::loadFile(const QString &path)
     QFileInfo fi(path);
     if (fi.exists()) {
         m->pdfFile = path;
+#ifdef QPDF_WIDGET_USE_CORS
         renderPdfFile(path);
+#else
+        QFile file(path);
+        if (file.open(QIODevice::ReadOnly)) {
+            QByteArray data = file.readAll();
+            loadData(data);
+        } else {
+            return false;
+        }
+#endif
         return true;
     }
 
