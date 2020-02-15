@@ -32,3 +32,10 @@ If something goes wrong, as sometimes it does, you may use Chromium debug consol
 * Launch your `qpdf`-based application
 * Open Chrome or Chromium web browser and navigate to http://localhost:9999
 * Select the running application link in the browser and you will be presented with a familiar web page inspection console.
+
+Qt Quick Compiler Issue
+-----------------------
+This project includes JavaScript `*.js` files as resources. Qt Creator may try to add them to QML resources instead, which makes
+the web engine unable to load `*.js` from normal resources. This happens on Windows in `Release` builds automatically (but not in `Debug`
+for some reason). Make sure to disable Qt Quick Compiler in your project build settings:
+![Disable Qt Quick](https://github.com/Archie3d/qpdf/disable_qml.png)
