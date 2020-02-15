@@ -38,4 +38,4 @@ Qt Quick Compiler Issue
 This project includes JavaScript `*.js` files as resources. Qt Creator may try to add them to QML resources instead, which makes
 the web engine unable to load `*.js` from normal resources. This happens on Windows in `Release` builds automatically (but not in `Debug`
 for some reason). Make sure to disable Qt Quick Compiler in your project build settings:
-![Disable Qt Quick](https://github.com/Archie3d/qpdf/disable_qml.png)
+![Disable Qt Quick](https://raw.githubusercontent.com/Archie3d/qpdf/master/disable_qml.png)
